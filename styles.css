@@ -1,4 +1,109 @@
-h1 {
+:root {
+  color-scheme: light;
+  --text: #1a1a1a;
+  --muted: #4d4d4d;
+  --bg: #f6f5f2;
+  --line: #e2e0da;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+}
+
+main,
+footer {
+  max-width: 40rem;
   margin: 0 auto;
-  text-align: center;
+  padding-inline: 1.25rem;
+}
+
+main {
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+}
+
+footer {
+  padding-top: 1.25rem;
+  padding-bottom: 3rem;
+  border-top: 1px solid var(--line);
+}
+
+footer a {
+  color: inherit;
+}
+
+h1,
+h2 {
+  line-height: 1.25;
+  font-weight: 600;
+}
+
+h1 {
+  margin: 0 0 1.25rem;
+  font-size: 2rem;
+}
+
+h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.25rem;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+dl {
+  margin: 0;
+}
+
+dl div + div {
+  margin-top: 0.35rem;
+}
+
+dt,
+dd {
+  display: inline;
+  margin: 0;
+}
+
+dt {
+  color: var(--muted);
+}
+
+dt::after {
+  content: ": ";
+}
+
+section {
+  margin-bottom: 2rem;
+}
+
+ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+li + li {
+  margin-top: 0.35rem;
 }
