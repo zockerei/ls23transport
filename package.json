@@ -2,13 +2,12 @@
   "name": "ls23transport",
   "version": "1.0.0",
   "description": "",
-  "main": "script.js",
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "check": "npm run lint && npm run format:check"
   },
   "repository": {
     "type": "git",
@@ -16,8 +15,9 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "type": "commonjs",
+  "license": "UNLICENSED",
+  "type": "module",
+  "private": true,
   "bugs": {
     "url": "https://github.com/zockerei/ls23transport/issues"
   },
@@ -25,7 +25,6 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "eslint": "^10.11.0",
-    "eslint-config-prettier": "^10.1.8",
     "globals": "^17.12.0",
     "prettier": "^3.9.9"
   }
