@@ -1,0 +1,12 @@
+Options -Indexes
+ErrorDocument 404 /404.html
+
+RewriteEngine On
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^ https://ls23transport.at%{REQUEST_URI} [R=301,L]
+
+RedirectMatch 404 /\.(?!well-known(/|$))
+RedirectMatch 404 ^/(docs|scripts|forms/inc)(/|$)
+RedirectMatch 404 ^/(package(-lock)?\.json|eslint\.config\.mjs)$
+RedirectMatch 404 \.md$
