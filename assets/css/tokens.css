@@ -1,0 +1,62 @@
+:root {
+  color-scheme: light dark;
+
+  --orange-300: #ff8c4d;
+  --orange-400: #ff7a33;
+  --orange-500: #ff610d;
+  --orange-600: #bf4000;
+  --orange-700: #a93c00;
+
+  --color-bg: light-dark(#ffffff, #121212);
+  --color-surface: light-dark(#f4f1ec, #1e1c1a);
+  --color-inverse: light-dark(#1a1714, #0b0a09);
+  --color-text: light-dark(#1a1714, #f2efea);
+  --color-text-muted: light-dark(#5c554f, #b8b0a8);
+  --color-text-on-inverse: #f2efea;
+  --color-accent: var(--orange-500);
+  --color-text-accent: light-dark(var(--orange-600), var(--orange-500));
+  --color-link: light-dark(var(--orange-600), var(--orange-500));
+  --color-link-hover: light-dark(var(--orange-700), var(--orange-300));
+  --color-border: light-dark(#e3ded8, #3a3633);
+  --color-border-strong: light-dark(#7a716a, #8a817a);
+  --color-focus: light-dark(#1a1714, #f2efea);
+  --color-error: light-dark(#b3261e, #ff8a80);
+  --color-success: light-dark(#1e7a3c, #6fcf8a);
+  --color-button-bg: var(--orange-500);
+  --color-button-bg-hover: var(--orange-400);
+  --color-button-text: #121212;
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --leading-body: 1.6;
+  --leading-heading: 1.1;
+
+  --step--1: 0.9375rem;
+  --step-0: clamp(1.0625rem, 1.0408rem + 0.1087vi, 1.125rem);
+  --step-1: clamp(1.1953rem, 1.1219rem + 0.3668vi, 1.4063rem);
+  --step-2: clamp(1.3447rem, 1.201rem + 0.7184vi, 1.7578rem);
+  --step-3: clamp(1.5128rem, 1.2747rem + 1.1903vi, 2.1973rem);
+  --step-4: clamp(1.7019rem, 1.3386rem + 1.8168vi, 2.7466rem);
+  --step-5: clamp(1.9147rem, 1.3865rem + 2.641vi, 3.4332rem);
+
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-s: 1rem;
+  --space-m: 1.5rem;
+  --space-l: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+
+  --radius-s: 0.25rem;
+  --radius-m: 0.5rem;
+  --radius-full: 999rem;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
