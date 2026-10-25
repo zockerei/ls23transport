@@ -404,3 +404,83 @@ h2 {
 .step--1 {
   font-size: var(--step--1);
 }
+
+.logos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: var(--space-s);
+}
+
+.logo {
+  display: grid;
+  gap: var(--space-xs);
+  justify-items: start;
+  margin: 0;
+  padding: var(--space-m);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-m);
+  color: var(--fg);
+  background: var(--bg);
+}
+
+.logo img {
+  inline-size: 100%;
+  max-inline-size: 16rem;
+  block-size: auto;
+}
+
+.logo--small img {
+  inline-size: 7.5rem;
+}
+
+.logo figcaption,
+.avatar figcaption {
+  font-size: var(--step--1);
+}
+
+.logo--bg {
+  --fg: var(--color-text-muted);
+  --bg: var(--color-bg);
+}
+
+.logo--surface {
+  --fg: var(--color-text-muted);
+  --bg: var(--color-surface);
+}
+
+.logo--inverse {
+  --fg: var(--color-text-on-inverse);
+  --bg: var(--color-inverse);
+}
+
+h3 {
+  margin-block: var(--space-xl) var(--space-2xs);
+  font-size: var(--step-1);
+}
+
+.avatars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-m);
+  align-items: end;
+}
+
+.avatar {
+  display: grid;
+  gap: var(--space-2xs);
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+.avatar img {
+  inline-size: 10rem;
+  block-size: auto;
+}
+
+.avatar--circle img {
+  border-radius: 50%;
+}
+
+.avatar--small img {
+  inline-size: 3rem;
+}
