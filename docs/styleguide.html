@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
     <title>Styleguide · LS23 Transport</title>
+    <link
+      rel="preload"
+      href="/assets/fonts/archivo-variable-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <link rel="stylesheet" href="/assets/css/tokens.css" />
     <link rel="stylesheet" href="/docs/styleguide.css" />
   </head>
@@ -380,6 +387,56 @@
           <li class="step-0"><code>--step-0</code> Möbelmontage in Linz</li>
           <li class="step--1"><code>--step--1</code> Möbelmontage in Linz</li>
         </ul>
+      </section>
+
+      <section aria-labelledby="font">
+        <h2 id="font">Font</h2>
+
+        <div class="font-samples" lang="de-AT">
+          <p class="font-sample font-sample--400">
+            <code>400</code> Umzug in Linz und Oberösterreich
+          </p>
+          <p class="font-sample font-sample--600">
+            <code>600</code> Umzug in Linz und Oberösterreich
+          </p>
+          <p class="font-sample font-sample--800">
+            <code>800</code> Umzug in Linz und Oberösterreich
+          </p>
+          <p class="font-sample font-sample--wide">
+            <code>800 · 112%</code> Kurierfahrten
+          </p>
+          <p class="font-sample font-sample--wider">
+            <code>800 · 125%</code> Kurierfahrten
+          </p>
+          <p class="font-sample">
+            <code>glyphs</code> ä ö ü Ä Ö Ü ß € „Zitat“ – · 0123456789
+          </p>
+        </div>
+
+        <h3>Fallback</h3>
+        <div class="fallbacks" lang="de-AT">
+          <figure class="fallback fallback--archivo">
+            <p>
+              Wir übernehmen Ihren Umzug, montieren Ihre Möbel und holen Sachen
+              vom Marktplatz ab. Fair, pünktlich und aus der Region.
+            </p>
+            <figcaption>Archivo</figcaption>
+          </figure>
+          <figure class="fallback fallback--corrected">
+            <p>
+              Wir übernehmen Ihren Umzug, montieren Ihre Möbel und holen Sachen
+              vom Marktplatz ab. Fair, pünktlich und aus der Region.
+            </p>
+            <figcaption>Archivo Fallback</figcaption>
+          </figure>
+          <figure class="fallback fallback--plain">
+            <p>
+              Wir übernehmen Ihren Umzug, montieren Ihre Möbel und holen Sachen
+              vom Marktplatz ab. Fair, pünktlich und aus der Region.
+            </p>
+            <figcaption>Arial, uncorrected</figcaption>
+          </figure>
+        </div>
       </section>
 
       <section aria-labelledby="logo">

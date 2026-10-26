@@ -26,7 +26,9 @@
   --color-button-bg-hover: var(--orange-400);
   --color-button-text: #121212;
 
-  --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-sans:
+    "Archivo", "Archivo Fallback", system-ui, -apple-system, "Segoe UI",
+    sans-serif;
   --leading-body: 1.6;
   --leading-heading: 1.1;
 
@@ -59,4 +61,24 @@
 
 :root[data-theme="dark"] {
   color-scheme: dark;
+}
+
+@font-face {
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+  src: url("/assets/fonts/archivo-variable-latin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Archivo Fallback";
+  src:
+    local("Arial"), local("ArialMT"), local("Liberation Sans"), local("Arimo"),
+    local("Roboto"), local("Roboto-Regular");
+  size-adjust: 98.46%;
+  ascent-override: 89.17%;
+  descent-override: 21.33%;
+  line-gap-override: 0%;
 }
