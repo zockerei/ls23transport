@@ -13,6 +13,7 @@
   --color-text: light-dark(#1a1714, #f2efea);
   --color-text-muted: light-dark(#5c554f, #b8b0a8);
   --color-text-on-inverse: #f2efea;
+  --color-text-muted-on-inverse: #b8b0a8;
   --color-accent: var(--orange-500);
   --color-text-accent: light-dark(var(--orange-600), var(--orange-500));
   --color-link: light-dark(var(--orange-600), var(--orange-500));
