@@ -177,41 +177,49 @@
   }
 
   .site-header__inner {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-areas:
+      "logo actions"
+      "nav nav";
+    grid-template-columns: auto 1fr;
     align-items: center;
-    justify-content: space-between;
     gap: var(--space-xs) var(--space-m);
     padding-block: var(--space-s);
   }
 
   .site-header__logo {
+    grid-area: logo;
     color: var(--color-text);
+  }
+
+  .site-nav {
+    grid-area: nav;
+  }
+
+  .site-header__actions {
+    grid-area: actions;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: end;
+    gap: var(--space-xs);
+  }
+
+  .site-header__phone {
+    padding-block: var(--space-xs);
+    color: var(--color-text);
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .site-header__phone:hover {
+    text-decoration: underline;
   }
 
   .site-header__logo-svg {
     block-size: 3.5rem;
     inline-size: auto;
-  }
-
-  .site-nav__list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2xs) var(--space-m);
-    padding: 0;
-    list-style: none;
-  }
-
-  .site-nav a,
-  .site-header__phone {
-    color: var(--color-text);
-    font-weight: 600;
-    text-decoration: none;
-  }
-
-  .site-nav a:hover,
-  .site-header__phone:hover {
-    text-decoration: underline;
   }
 
   .site-footer__inner {
@@ -241,6 +249,46 @@
 
     .section {
       padding-block: var(--space-2xl);
+    }
+
+    .site-header__inner {
+      grid-template-areas: "logo nav actions";
+      grid-template-columns: auto 1fr auto;
+    }
+  }
+}
+
+@layer components {
+  .site-nav__list {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: var(--space-m);
+    padding: 0;
+    list-style: none;
+  }
+
+  .site-nav a {
+    display: block;
+    padding-block: var(--space-xs);
+    color: var(--color-text);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .site-nav a:hover {
+    text-decoration: underline;
+  }
+
+  .site-nav a[aria-current="page"] {
+    text-decoration: underline;
+    text-decoration-color: var(--color-text-accent);
+    text-decoration-thickness: 0.2em;
+    text-underline-offset: 0.4em;
+  }
+
+  @media (width >= 48rem) {
+    .site-nav__list {
+      justify-content: center;
     }
   }
 }
