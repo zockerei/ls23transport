@@ -523,3 +523,18 @@ h3 {
 .fallback--plain p {
   font-family: Arial, "Liberation Sans", Arimo, sans-serif;
 }
+
+.icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-m);
+  padding: 0;
+  list-style: none;
+}
+
+.icons__item {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-2xs);
+  font-size: var(--step--1);
+}

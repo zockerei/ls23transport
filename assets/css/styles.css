@@ -263,6 +263,17 @@
 }
 
 @layer components {
+  .icon {
+    flex-shrink: 0;
+    inline-size: 1.5rem;
+    block-size: 1.5rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
   .site-nav__list {
     display: flex;
     flex-wrap: wrap;
@@ -307,12 +318,7 @@
     background-color: var(--color-surface);
   }
 
-  .theme-toggle svg {
-    inline-size: 1.5rem;
-    block-size: 1.5rem;
-  }
-
-  .theme-toggle[aria-pressed="true"] svg {
+  .theme-toggle[aria-pressed="true"] .icon {
     fill: currentColor;
   }
 
