@@ -324,6 +324,24 @@
     color: var(--color-link-hover);
   }
 
+  .section-heading {
+    display: grid;
+    gap: var(--space-xs);
+  }
+
+  .section-heading__eyebrow {
+    color: var(--color-text-accent);
+    font-size: var(--step--1);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .section-heading__lead {
+    color: var(--color-text-muted);
+    font-size: var(--step-1);
+  }
+
   .site-nav__list {
     display: flex;
     flex-wrap: wrap;

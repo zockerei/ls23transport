@@ -565,3 +565,7 @@ h3 {
   gap: var(--space-s);
   padding: var(--space-m);
 }
+
+.demo__row--surface {
+  background: var(--color-surface);
+}
