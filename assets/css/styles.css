@@ -343,6 +343,18 @@
     font-size: var(--step-1);
   }
 
+  .hero__content {
+    display: grid;
+    justify-items: start;
+    gap: var(--space-l);
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+
   .card {
     position: relative;
     display: flex;
