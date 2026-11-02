@@ -548,6 +548,11 @@
   .demos {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
+
+  /* Components with viewport-based layouts (hero) need the full width. */
+  .demos--full {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 .demo {
