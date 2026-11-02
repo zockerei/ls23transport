@@ -343,16 +343,48 @@
     font-size: var(--step-1);
   }
 
+  .hero__inner {
+    display: grid;
+    align-items: center;
+    gap: var(--space-xl);
+  }
+
   .hero__content {
     display: grid;
     justify-items: start;
     gap: var(--space-l);
   }
 
+  .hero h1 {
+    hyphens: manual;
+  }
+
   .hero__actions {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-xs);
+  }
+
+  .hero__media {
+    display: grid;
+    place-items: center;
+    max-inline-size: 75svh;
+    aspect-ratio: 3 / 2;
+    border-radius: var(--radius-l);
+    background-color: color-mix(in srgb, var(--color-text) 8%, transparent);
+    color: var(--color-text-muted);
+  }
+
+  .hero__media .icon {
+    inline-size: 4rem;
+    block-size: 4rem;
+    stroke-width: 1.5;
+  }
+
+  @media (width >= 48rem) {
+    .hero__inner {
+      grid-template-columns: 3fr 2fr;
+    }
   }
 
   .card {
