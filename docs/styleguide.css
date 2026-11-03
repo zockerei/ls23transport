@@ -549,7 +549,7 @@
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
 
-  /* Components with viewport-based layouts (hero) need the full width. */
+  /* Full-width page sections (hero, trust strip, services): the hero layout is viewport-based. */
   .demos--full {
     grid-template-columns: minmax(0, 1fr);
   }
