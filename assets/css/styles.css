@@ -240,6 +240,11 @@
     inline-size: auto;
   }
 
+  .site-footer {
+    border-block-start: 1px solid
+      color-mix(in srgb, var(--color-text) 20%, transparent);
+  }
+
   .site-footer__inner {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr));
@@ -526,6 +531,18 @@
 
   .faq__answer {
     padding-block-end: var(--space-m);
+  }
+
+  .cta__inner {
+    display: grid;
+    justify-items: start;
+    gap: var(--space-l);
+  }
+
+  .cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
   }
 
   @media (width >= 48rem) {
