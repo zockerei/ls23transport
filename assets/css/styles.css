@@ -265,6 +265,38 @@
     font-size: var(--step--1);
   }
 
+  html {
+    scroll-padding-block-end: calc(
+      2.75rem + 2 * var(--space-xs) + var(--space-s)
+    );
+  }
+
+  .sticky-bar {
+    position: sticky;
+    inset-block-end: 0;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xs);
+    padding: var(--space-xs) var(--space-s);
+    border-block-start: 1px solid var(--color-border);
+    background-color: var(--color-bg);
+  }
+
+  .sticky-bar .button {
+    padding-inline: var(--space-xs);
+  }
+
+  @media (width >= 48rem), (height < 30rem) {
+    html {
+      scroll-padding-block-end: 0;
+    }
+
+    .sticky-bar {
+      display: none;
+    }
+  }
+
   @media (width >= 48rem) {
     .container {
       padding-inline: var(--space-l);
