@@ -224,6 +224,7 @@
   }
 
   .site-header__phone {
+    display: none;
     padding-block: var(--space-xs);
     color: var(--color-text);
     font-weight: 600;
@@ -294,6 +295,10 @@
 
     .sticky-bar {
       display: none;
+    }
+
+    .site-header__phone {
+      display: block;
     }
   }
 
