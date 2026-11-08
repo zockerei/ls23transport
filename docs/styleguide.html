@@ -1901,6 +1901,9 @@
           <code>-dark</code> to every <code>id</code>, because ids must be
           unique on a page. A valid submit posts to
           <code>/forms/anfrage.php</code>, which doesn't exist before 3.4.
+          Leistung has no native <code>required</code>: on a checkbox it means
+          "this box must be checked", and HTML can't require one of several. The
+          server (3.4) and JS (3.5) check it.
         </p>
         <div class="demos demos--full" lang="de-AT">
           <div class="demo theme-light">
@@ -1918,17 +1921,23 @@
                     markiert.
                   </p>
 
-                  <fieldset class="form__group">
+                  <fieldset
+                    class="form__group"
+                    aria-describedby="anfrage-service-hint"
+                  >
                     <legend class="form__legend">Leistung</legend>
+                    <p class="field__hint" id="anfrage-service-hint">
+                      Eine oder mehrere auswählen. Passt nichts, wählen Sie
+                      „Sonstiges“ und beschreiben Sie Ihren Auftrag unten.
+                    </p>
                     <div class="choices">
                       <div class="choice">
                         <input
                           class="choice__input"
-                          type="radio"
+                          type="checkbox"
                           id="anfrage-service-umzug"
-                          name="service"
+                          name="service[]"
                           value="umzug"
-                          required
                         />
                         <label class="choice__label" for="anfrage-service-umzug"
                           >Umzug &amp; Büroumzug</label
@@ -1937,11 +1946,10 @@
                       <div class="choice">
                         <input
                           class="choice__input"
-                          type="radio"
+                          type="checkbox"
                           id="anfrage-service-moebelmontage"
-                          name="service"
+                          name="service[]"
                           value="moebelmontage"
-                          required
                         />
                         <label
                           class="choice__label"
@@ -1952,11 +1960,10 @@
                       <div class="choice">
                         <input
                           class="choice__input"
-                          type="radio"
+                          type="checkbox"
                           id="anfrage-service-abtransport"
-                          name="service"
+                          name="service[]"
                           value="abtransport"
-                          required
                         />
                         <label
                           class="choice__label"
@@ -1967,11 +1974,10 @@
                       <div class="choice">
                         <input
                           class="choice__input"
-                          type="radio"
+                          type="checkbox"
                           id="anfrage-service-kurier-pakete"
-                          name="service"
+                          name="service[]"
                           value="kurier-pakete"
-                          required
                         />
                         <label
                           class="choice__label"
@@ -1982,11 +1988,10 @@
                       <div class="choice">
                         <input
                           class="choice__input"
-                          type="radio"
+                          type="checkbox"
                           id="anfrage-service-abholservice"
-                          name="service"
+                          name="service[]"
                           value="abholservice"
-                          required
                         />
                         <label
                           class="choice__label"
@@ -1997,26 +2002,10 @@
                       <div class="choice">
                         <input
                           class="choice__input"
-                          type="radio"
-                          id="anfrage-service-gewerbe"
-                          name="service"
-                          value="gewerbe"
-                          required
-                        />
-                        <label
-                          class="choice__label"
-                          for="anfrage-service-gewerbe"
-                          >Für Unternehmen</label
-                        >
-                      </div>
-                      <div class="choice">
-                        <input
-                          class="choice__input"
-                          type="radio"
+                          type="checkbox"
                           id="anfrage-service-sonstiges"
-                          name="service"
+                          name="service[]"
                           value="sonstiges"
-                          required
                         />
                         <label
                           class="choice__label"
@@ -2041,6 +2030,20 @@
                         autocomplete="name"
                         required
                         minlength="2"
+                        maxlength="100"
+                      />
+                    </div>
+                    <div class="field">
+                      <label class="field__label" for="anfrage-company"
+                        >Firma
+                        <span class="form__optional">(optional)</span></label
+                      >
+                      <input
+                        class="field__input"
+                        type="text"
+                        id="anfrage-company"
+                        name="company"
+                        autocomplete="organization"
                         maxlength="100"
                       />
                     </div>
@@ -2286,17 +2289,23 @@
                     markiert.
                   </p>
 
-                  <fieldset class="form__group">
+                  <fieldset
+                    class="form__group"
+                    aria-describedby="anfrage-service-hint-dark"
+                  >
                     <legend class="form__legend">Leistung</legend>
+                    <p class="field__hint" id="anfrage-service-hint-dark">
+                      Eine oder mehrere auswählen. Passt nichts, wählen Sie
+                      „Sonstiges“ und beschreiben Sie Ihren Auftrag unten.
+                    </p>
                     <div class="choices">
                       <div class="choice">
                         <input
                           class="choice__input"
-                          type="radio"
+                          type="checkbox"
                           id="anfrage-service-umzug-dark"
-                          name="service"
+                          name="service[]"
                           value="umzug"
-                          required
                         />
                         <label
                           class="choice__label"
@@ -2307,11 +2316,10 @@
                       <div class="choice">
                         <input
                           class="choice__input"
-                          type="radio"
+                          type="checkbox"
                           id="anfrage-service-moebelmontage-dark"
-                          name="service"
+                          name="service[]"
                           value="moebelmontage"
-                          required
                         />
                         <label
                           class="choice__label"
@@ -2322,11 +2330,10 @@
                       <div class="choice">
                         <input
                           class="choice__input"
-                          type="radio"
+                          type="checkbox"
                           id="anfrage-service-abtransport-dark"
-                          name="service"
+                          name="service[]"
                           value="abtransport"
-                          required
                         />
                         <label
                           class="choice__label"
@@ -2337,11 +2344,10 @@
                       <div class="choice">
                         <input
                           class="choice__input"
-                          type="radio"
+                          type="checkbox"
                           id="anfrage-service-kurier-pakete-dark"
-                          name="service"
+                          name="service[]"
                           value="kurier-pakete"
-                          required
                         />
                         <label
                           class="choice__label"
@@ -2352,11 +2358,10 @@
                       <div class="choice">
                         <input
                           class="choice__input"
-                          type="radio"
+                          type="checkbox"
                           id="anfrage-service-abholservice-dark"
-                          name="service"
+                          name="service[]"
                           value="abholservice"
-                          required
                         />
                         <label
                           class="choice__label"
@@ -2367,26 +2372,10 @@
                       <div class="choice">
                         <input
                           class="choice__input"
-                          type="radio"
-                          id="anfrage-service-gewerbe-dark"
-                          name="service"
-                          value="gewerbe"
-                          required
-                        />
-                        <label
-                          class="choice__label"
-                          for="anfrage-service-gewerbe-dark"
-                          >Für Unternehmen</label
-                        >
-                      </div>
-                      <div class="choice">
-                        <input
-                          class="choice__input"
-                          type="radio"
+                          type="checkbox"
                           id="anfrage-service-sonstiges-dark"
-                          name="service"
+                          name="service[]"
                           value="sonstiges"
-                          required
                         />
                         <label
                           class="choice__label"
@@ -2411,6 +2400,20 @@
                         autocomplete="name"
                         required
                         minlength="2"
+                        maxlength="100"
+                      />
+                    </div>
+                    <div class="field">
+                      <label class="field__label" for="anfrage-company-dark"
+                        >Firma
+                        <span class="form__optional">(optional)</span></label
+                      >
+                      <input
+                        class="field__input"
+                        type="text"
+                        id="anfrage-company-dark"
+                        name="company"
+                        autocomplete="organization"
                         maxlength="100"
                       />
                     </div>
