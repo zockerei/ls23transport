@@ -473,6 +473,26 @@
     list-style: none;
   }
 
+  .contact__list {
+    --grid-min: 16rem;
+
+    padding: 0;
+    list-style: none;
+  }
+
+  .contact__link {
+    font-weight: 600;
+  }
+
+  .contact__needs {
+    max-inline-size: 65ch;
+    padding-inline-start: 1.25em;
+  }
+
+  .contact__needs li + li {
+    margin-block-start: var(--space-2xs);
+  }
+
   .process__list {
     display: grid;
     gap: var(--space-l);
