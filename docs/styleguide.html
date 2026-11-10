@@ -1890,6 +1890,762 @@
           </div>
         </div>
       </section>
+
+      <section aria-labelledby="form">
+        <h2 id="form">Form</h2>
+        <p class="sg__intro">
+          The request form (§4) as it goes on <code>/kontakt/</code> in 3.4.
+          Native validation only: no JS, no <code>novalidate</code>. Submit an
+          empty form, then letters in Telefon and three digits in PLZ. The light
+          copy uses the real <code>id</code>s; the dark copy adds
+          <code>-dark</code> to every <code>id</code>, because ids must be
+          unique on a page. A valid submit posts to
+          <code>/forms/anfrage.php</code>, which doesn't exist before 3.4.
+          Leistung has no native <code>required</code>: on a checkbox it means
+          "this box must be checked", and HTML can't require one of several. The
+          server (3.4) and JS (3.5) check it.
+        </p>
+        <div class="demos demos--full" lang="de-AT">
+          <div class="demo theme-light">
+            <section class="section">
+              <div class="container stack">
+                <h2 id="anfrage-titel">Anfrage senden</h2>
+                <form
+                  class="form"
+                  action="/forms/anfrage.php"
+                  method="post"
+                  aria-labelledby="anfrage-titel"
+                >
+                  <p class="form__intro">
+                    Alle Felder sind Pflichtfelder, außer sie sind als optional
+                    markiert.
+                  </p>
+
+                  <fieldset
+                    class="form__group"
+                    aria-describedby="anfrage-service-hint"
+                  >
+                    <legend class="form__legend">Leistung</legend>
+                    <p class="field__hint" id="anfrage-service-hint">
+                      Eine oder mehrere auswählen. Passt nichts, wählen Sie
+                      „Sonstiges“ und beschreiben Sie Ihren Auftrag unten.
+                    </p>
+                    <div class="choices">
+                      <div class="choice">
+                        <input
+                          class="choice__input"
+                          type="checkbox"
+                          id="anfrage-service-umzug"
+                          name="service[]"
+                          value="umzug"
+                        />
+                        <label class="choice__label" for="anfrage-service-umzug"
+                          >Umzug &amp; Büroumzug</label
+                        >
+                      </div>
+                      <div class="choice">
+                        <input
+                          class="choice__input"
+                          type="checkbox"
+                          id="anfrage-service-moebelmontage"
+                          name="service[]"
+                          value="moebelmontage"
+                        />
+                        <label
+                          class="choice__label"
+                          for="anfrage-service-moebelmontage"
+                          >Möbelmontage</label
+                        >
+                      </div>
+                      <div class="choice">
+                        <input
+                          class="choice__input"
+                          type="checkbox"
+                          id="anfrage-service-abtransport"
+                          name="service[]"
+                          value="abtransport"
+                        />
+                        <label
+                          class="choice__label"
+                          for="anfrage-service-abtransport"
+                          >Abtransport</label
+                        >
+                      </div>
+                      <div class="choice">
+                        <input
+                          class="choice__input"
+                          type="checkbox"
+                          id="anfrage-service-kurier-pakete"
+                          name="service[]"
+                          value="kurier-pakete"
+                        />
+                        <label
+                          class="choice__label"
+                          for="anfrage-service-kurier-pakete"
+                          >Kurierfahrten</label
+                        >
+                      </div>
+                      <div class="choice">
+                        <input
+                          class="choice__input"
+                          type="checkbox"
+                          id="anfrage-service-abholservice"
+                          name="service[]"
+                          value="abholservice"
+                        />
+                        <label
+                          class="choice__label"
+                          for="anfrage-service-abholservice"
+                          >Abholservice</label
+                        >
+                      </div>
+                      <div class="choice">
+                        <input
+                          class="choice__input"
+                          type="checkbox"
+                          id="anfrage-service-sonstiges"
+                          name="service[]"
+                          value="sonstiges"
+                        />
+                        <label
+                          class="choice__label"
+                          for="anfrage-service-sonstiges"
+                          >Sonstiges</label
+                        >
+                      </div>
+                    </div>
+                  </fieldset>
+
+                  <fieldset class="form__group">
+                    <legend class="form__legend">Kontaktdaten</legend>
+                    <div class="field">
+                      <label class="field__label" for="anfrage-name"
+                        >Name</label
+                      >
+                      <input
+                        class="field__input"
+                        type="text"
+                        id="anfrage-name"
+                        name="name"
+                        autocomplete="name"
+                        required
+                        minlength="2"
+                        maxlength="100"
+                      />
+                    </div>
+                    <div class="field">
+                      <label class="field__label" for="anfrage-company"
+                        >Firma
+                        <span class="form__optional">(optional)</span></label
+                      >
+                      <input
+                        class="field__input"
+                        type="text"
+                        id="anfrage-company"
+                        name="company"
+                        autocomplete="organization"
+                        maxlength="100"
+                      />
+                    </div>
+                    <div class="field">
+                      <label class="field__label" for="anfrage-phone"
+                        >Telefon</label
+                      >
+                      <input
+                        class="field__input"
+                        type="tel"
+                        id="anfrage-phone"
+                        name="phone"
+                        autocomplete="tel"
+                        required
+                        pattern="[+0-9 \(\)\/\-]{6,25}"
+                      />
+                    </div>
+                    <div class="field">
+                      <label class="field__label" for="anfrage-email"
+                        >E-Mail</label
+                      >
+                      <input
+                        class="field__input"
+                        type="email"
+                        id="anfrage-email"
+                        name="email"
+                        autocomplete="email"
+                        required
+                        maxlength="254"
+                      />
+                    </div>
+                  </fieldset>
+
+                  <fieldset class="form__group">
+                    <legend class="form__legend">Abholung</legend>
+                    <div class="form__row">
+                      <div class="field field--zip">
+                        <label class="field__label" for="anfrage-from-zip"
+                          >PLZ</label
+                        >
+                        <input
+                          class="field__input"
+                          type="text"
+                          id="anfrage-from-zip"
+                          name="from_zip"
+                          inputmode="numeric"
+                          autocomplete="postal-code"
+                          required
+                          pattern="[0-9]{4}"
+                          maxlength="4"
+                        />
+                      </div>
+                      <div class="field">
+                        <label class="field__label" for="anfrage-from-city"
+                          >Ort</label
+                        >
+                        <input
+                          class="field__input"
+                          type="text"
+                          id="anfrage-from-city"
+                          name="from_city"
+                          autocomplete="address-level2"
+                          required
+                          maxlength="100"
+                        />
+                      </div>
+                    </div>
+                  </fieldset>
+
+                  <fieldset class="form__group">
+                    <legend class="form__legend">
+                      Ziel <span class="form__optional">(optional)</span>
+                    </legend>
+                    <div class="form__row">
+                      <div class="field field--zip">
+                        <label class="field__label" for="anfrage-to-zip"
+                          >PLZ</label
+                        >
+                        <input
+                          class="field__input"
+                          type="text"
+                          id="anfrage-to-zip"
+                          name="to_zip"
+                          inputmode="numeric"
+                          pattern="[0-9]{4}"
+                          maxlength="4"
+                        />
+                      </div>
+                      <div class="field">
+                        <label class="field__label" for="anfrage-to-city"
+                          >Ort</label
+                        >
+                        <input
+                          class="field__input"
+                          type="text"
+                          id="anfrage-to-city"
+                          name="to_city"
+                          maxlength="100"
+                        />
+                      </div>
+                    </div>
+                  </fieldset>
+
+                  <fieldset class="form__group">
+                    <legend class="form__legend">Termin</legend>
+                    <div class="form__row">
+                      <div class="field">
+                        <label class="field__label" for="anfrage-date"
+                          >Wunschtermin</label
+                        >
+                        <input
+                          class="field__input"
+                          type="date"
+                          id="anfrage-date"
+                          name="date"
+                          required
+                        />
+                      </div>
+                      <div class="field">
+                        <label class="field__label" for="anfrage-date-alt"
+                          >Alternativtermin
+                          <span class="form__optional">(optional)</span></label
+                        >
+                        <input
+                          class="field__input"
+                          type="date"
+                          id="anfrage-date-alt"
+                          name="date_alt"
+                        />
+                      </div>
+                    </div>
+                    <fieldset class="form__subgroup">
+                      <legend class="field__label">Zeitfenster</legend>
+                      <div class="choices">
+                        <div class="choice">
+                          <input
+                            class="choice__input"
+                            type="radio"
+                            id="anfrage-time-window-vormittag"
+                            name="time_window"
+                            value="vormittag"
+                            required
+                          />
+                          <label
+                            class="choice__label"
+                            for="anfrage-time-window-vormittag"
+                            >Vormittag</label
+                          >
+                        </div>
+                        <div class="choice">
+                          <input
+                            class="choice__input"
+                            type="radio"
+                            id="anfrage-time-window-nachmittag"
+                            name="time_window"
+                            value="nachmittag"
+                            required
+                          />
+                          <label
+                            class="choice__label"
+                            for="anfrage-time-window-nachmittag"
+                            >Nachmittag</label
+                          >
+                        </div>
+                        <div class="choice">
+                          <input
+                            class="choice__input"
+                            type="radio"
+                            id="anfrage-time-window-abend"
+                            name="time_window"
+                            value="abend"
+                            required
+                          />
+                          <label
+                            class="choice__label"
+                            for="anfrage-time-window-abend"
+                            >Abend</label
+                          >
+                        </div>
+                        <div class="choice">
+                          <input
+                            class="choice__input"
+                            type="radio"
+                            id="anfrage-time-window-flexibel"
+                            name="time_window"
+                            value="flexibel"
+                            required
+                          />
+                          <label
+                            class="choice__label"
+                            for="anfrage-time-window-flexibel"
+                            >Flexibel</label
+                          >
+                        </div>
+                      </div>
+                    </fieldset>
+                  </fieldset>
+
+                  <div class="field">
+                    <label class="field__label" for="anfrage-message"
+                      >Beschreibung</label
+                    >
+                    <p class="field__hint" id="anfrage-message-hint">
+                      Was soll transportiert werden? Geben Sie auch Stockwerk
+                      und Lift an, bei Paketen Größe und Gewicht.
+                    </p>
+                    <textarea
+                      class="field__input"
+                      id="anfrage-message"
+                      name="message"
+                      rows="6"
+                      required
+                      minlength="10"
+                      maxlength="3000"
+                      aria-describedby="anfrage-message-hint"
+                    ></textarea>
+                  </div>
+
+                  <div class="form__actions">
+                    <button class="button" type="submit">Anfrage senden</button>
+                    <p class="form__note">
+                      Wir verwenden Ihre Angaben nur, um Ihre Anfrage zu
+                      bearbeiten. Mehr dazu in der
+                      <a href="/datenschutz/">Datenschutzerklärung</a>.
+                    </p>
+                  </div>
+                </form>
+              </div>
+            </section>
+          </div>
+          <div class="demo theme-dark">
+            <section class="section">
+              <div class="container stack">
+                <h2 id="anfrage-titel-dark">Anfrage senden</h2>
+                <form
+                  class="form"
+                  action="/forms/anfrage.php"
+                  method="post"
+                  aria-labelledby="anfrage-titel-dark"
+                >
+                  <p class="form__intro">
+                    Alle Felder sind Pflichtfelder, außer sie sind als optional
+                    markiert.
+                  </p>
+
+                  <fieldset
+                    class="form__group"
+                    aria-describedby="anfrage-service-hint-dark"
+                  >
+                    <legend class="form__legend">Leistung</legend>
+                    <p class="field__hint" id="anfrage-service-hint-dark">
+                      Eine oder mehrere auswählen. Passt nichts, wählen Sie
+                      „Sonstiges“ und beschreiben Sie Ihren Auftrag unten.
+                    </p>
+                    <div class="choices">
+                      <div class="choice">
+                        <input
+                          class="choice__input"
+                          type="checkbox"
+                          id="anfrage-service-umzug-dark"
+                          name="service[]"
+                          value="umzug"
+                        />
+                        <label
+                          class="choice__label"
+                          for="anfrage-service-umzug-dark"
+                          >Umzug &amp; Büroumzug</label
+                        >
+                      </div>
+                      <div class="choice">
+                        <input
+                          class="choice__input"
+                          type="checkbox"
+                          id="anfrage-service-moebelmontage-dark"
+                          name="service[]"
+                          value="moebelmontage"
+                        />
+                        <label
+                          class="choice__label"
+                          for="anfrage-service-moebelmontage-dark"
+                          >Möbelmontage</label
+                        >
+                      </div>
+                      <div class="choice">
+                        <input
+                          class="choice__input"
+                          type="checkbox"
+                          id="anfrage-service-abtransport-dark"
+                          name="service[]"
+                          value="abtransport"
+                        />
+                        <label
+                          class="choice__label"
+                          for="anfrage-service-abtransport-dark"
+                          >Abtransport</label
+                        >
+                      </div>
+                      <div class="choice">
+                        <input
+                          class="choice__input"
+                          type="checkbox"
+                          id="anfrage-service-kurier-pakete-dark"
+                          name="service[]"
+                          value="kurier-pakete"
+                        />
+                        <label
+                          class="choice__label"
+                          for="anfrage-service-kurier-pakete-dark"
+                          >Kurierfahrten</label
+                        >
+                      </div>
+                      <div class="choice">
+                        <input
+                          class="choice__input"
+                          type="checkbox"
+                          id="anfrage-service-abholservice-dark"
+                          name="service[]"
+                          value="abholservice"
+                        />
+                        <label
+                          class="choice__label"
+                          for="anfrage-service-abholservice-dark"
+                          >Abholservice</label
+                        >
+                      </div>
+                      <div class="choice">
+                        <input
+                          class="choice__input"
+                          type="checkbox"
+                          id="anfrage-service-sonstiges-dark"
+                          name="service[]"
+                          value="sonstiges"
+                        />
+                        <label
+                          class="choice__label"
+                          for="anfrage-service-sonstiges-dark"
+                          >Sonstiges</label
+                        >
+                      </div>
+                    </div>
+                  </fieldset>
+
+                  <fieldset class="form__group">
+                    <legend class="form__legend">Kontaktdaten</legend>
+                    <div class="field">
+                      <label class="field__label" for="anfrage-name-dark"
+                        >Name</label
+                      >
+                      <input
+                        class="field__input"
+                        type="text"
+                        id="anfrage-name-dark"
+                        name="name"
+                        autocomplete="name"
+                        required
+                        minlength="2"
+                        maxlength="100"
+                      />
+                    </div>
+                    <div class="field">
+                      <label class="field__label" for="anfrage-company-dark"
+                        >Firma
+                        <span class="form__optional">(optional)</span></label
+                      >
+                      <input
+                        class="field__input"
+                        type="text"
+                        id="anfrage-company-dark"
+                        name="company"
+                        autocomplete="organization"
+                        maxlength="100"
+                      />
+                    </div>
+                    <div class="field">
+                      <label class="field__label" for="anfrage-phone-dark"
+                        >Telefon</label
+                      >
+                      <input
+                        class="field__input"
+                        type="tel"
+                        id="anfrage-phone-dark"
+                        name="phone"
+                        autocomplete="tel"
+                        required
+                        pattern="[+0-9 \(\)\/\-]{6,25}"
+                      />
+                    </div>
+                    <div class="field">
+                      <label class="field__label" for="anfrage-email-dark"
+                        >E-Mail</label
+                      >
+                      <input
+                        class="field__input"
+                        type="email"
+                        id="anfrage-email-dark"
+                        name="email"
+                        autocomplete="email"
+                        required
+                        maxlength="254"
+                      />
+                    </div>
+                  </fieldset>
+
+                  <fieldset class="form__group">
+                    <legend class="form__legend">Abholung</legend>
+                    <div class="form__row">
+                      <div class="field field--zip">
+                        <label class="field__label" for="anfrage-from-zip-dark"
+                          >PLZ</label
+                        >
+                        <input
+                          class="field__input"
+                          type="text"
+                          id="anfrage-from-zip-dark"
+                          name="from_zip"
+                          inputmode="numeric"
+                          autocomplete="postal-code"
+                          required
+                          pattern="[0-9]{4}"
+                          maxlength="4"
+                        />
+                      </div>
+                      <div class="field">
+                        <label class="field__label" for="anfrage-from-city-dark"
+                          >Ort</label
+                        >
+                        <input
+                          class="field__input"
+                          type="text"
+                          id="anfrage-from-city-dark"
+                          name="from_city"
+                          autocomplete="address-level2"
+                          required
+                          maxlength="100"
+                        />
+                      </div>
+                    </div>
+                  </fieldset>
+
+                  <fieldset class="form__group">
+                    <legend class="form__legend">
+                      Ziel <span class="form__optional">(optional)</span>
+                    </legend>
+                    <div class="form__row">
+                      <div class="field field--zip">
+                        <label class="field__label" for="anfrage-to-zip-dark"
+                          >PLZ</label
+                        >
+                        <input
+                          class="field__input"
+                          type="text"
+                          id="anfrage-to-zip-dark"
+                          name="to_zip"
+                          inputmode="numeric"
+                          pattern="[0-9]{4}"
+                          maxlength="4"
+                        />
+                      </div>
+                      <div class="field">
+                        <label class="field__label" for="anfrage-to-city-dark"
+                          >Ort</label
+                        >
+                        <input
+                          class="field__input"
+                          type="text"
+                          id="anfrage-to-city-dark"
+                          name="to_city"
+                          maxlength="100"
+                        />
+                      </div>
+                    </div>
+                  </fieldset>
+
+                  <fieldset class="form__group">
+                    <legend class="form__legend">Termin</legend>
+                    <div class="form__row">
+                      <div class="field">
+                        <label class="field__label" for="anfrage-date-dark"
+                          >Wunschtermin</label
+                        >
+                        <input
+                          class="field__input"
+                          type="date"
+                          id="anfrage-date-dark"
+                          name="date"
+                          required
+                        />
+                      </div>
+                      <div class="field">
+                        <label class="field__label" for="anfrage-date-alt-dark"
+                          >Alternativtermin
+                          <span class="form__optional">(optional)</span></label
+                        >
+                        <input
+                          class="field__input"
+                          type="date"
+                          id="anfrage-date-alt-dark"
+                          name="date_alt"
+                        />
+                      </div>
+                    </div>
+                    <fieldset class="form__subgroup">
+                      <legend class="field__label">Zeitfenster</legend>
+                      <div class="choices">
+                        <div class="choice">
+                          <input
+                            class="choice__input"
+                            type="radio"
+                            id="anfrage-time-window-vormittag-dark"
+                            name="time_window"
+                            value="vormittag"
+                            required
+                          />
+                          <label
+                            class="choice__label"
+                            for="anfrage-time-window-vormittag-dark"
+                            >Vormittag</label
+                          >
+                        </div>
+                        <div class="choice">
+                          <input
+                            class="choice__input"
+                            type="radio"
+                            id="anfrage-time-window-nachmittag-dark"
+                            name="time_window"
+                            value="nachmittag"
+                            required
+                          />
+                          <label
+                            class="choice__label"
+                            for="anfrage-time-window-nachmittag-dark"
+                            >Nachmittag</label
+                          >
+                        </div>
+                        <div class="choice">
+                          <input
+                            class="choice__input"
+                            type="radio"
+                            id="anfrage-time-window-abend-dark"
+                            name="time_window"
+                            value="abend"
+                            required
+                          />
+                          <label
+                            class="choice__label"
+                            for="anfrage-time-window-abend-dark"
+                            >Abend</label
+                          >
+                        </div>
+                        <div class="choice">
+                          <input
+                            class="choice__input"
+                            type="radio"
+                            id="anfrage-time-window-flexibel-dark"
+                            name="time_window"
+                            value="flexibel"
+                            required
+                          />
+                          <label
+                            class="choice__label"
+                            for="anfrage-time-window-flexibel-dark"
+                            >Flexibel</label
+                          >
+                        </div>
+                      </div>
+                    </fieldset>
+                  </fieldset>
+
+                  <div class="field">
+                    <label class="field__label" for="anfrage-message-dark"
+                      >Beschreibung</label
+                    >
+                    <p class="field__hint" id="anfrage-message-hint-dark">
+                      Was soll transportiert werden? Geben Sie auch Stockwerk
+                      und Lift an, bei Paketen Größe und Gewicht.
+                    </p>
+                    <textarea
+                      class="field__input"
+                      id="anfrage-message-dark"
+                      name="message"
+                      rows="6"
+                      required
+                      minlength="10"
+                      maxlength="3000"
+                      aria-describedby="anfrage-message-hint-dark"
+                    ></textarea>
+                  </div>
+
+                  <div class="form__actions">
+                    <button class="button" type="submit">Anfrage senden</button>
+                    <p class="form__note">
+                      Wir verwenden Ihre Angaben nur, um Ihre Anfrage zu
+                      bearbeiten. Mehr dazu in der
+                      <a href="/datenschutz/">Datenschutzerklärung</a>.
+                    </p>
+                  </div>
+                </form>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
     </main>
   </body>
 </html>
