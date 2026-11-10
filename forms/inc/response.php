@@ -1,0 +1,73 @@
+<?php
+
+declare(strict_types=1);
+
+/*
+ * How a handler answers. Two kinds of visitors:
+ * - JS (3.5): fetch() with `Accept: application/json` gets JSON and shows the result in the form.
+ * - No JS: a normal form POST gets a redirect (success) or the error page.
+ */
+
+/** True for fetch() from JS, which asks for JSON. */
+function wants_json(): bool
+{
+    return str_contains($_SERVER['HTTP_ACCEPT'] ?? '', 'application/json');
+}
+
+function send_json(int $status, array $data): never
+{
+    http_response_code($status);
+    header('Content-Type: application/json; charset=UTF-8');
+    echo json_encode($data, JSON_UNESCAPED_UNICODE);
+    exit;
+}
+
+/** Success. Also the fake success for spam. */
+function respond_success(): never
+{
+    if (wants_json()) {
+        send_json(200, ['ok' => true]);
+    }
+
+    // 303 See Other: the browser follows with a GET, so a reload on /danke/ doesn't send the form again.
+    header('Location: /danke/', true, 303);
+    exit;
+}
+
+/** Validation failed. `$errors` = field name → German message, in form order. */
+function respond_invalid(array $errors): never
+{
+    if (wants_json()) {
+        send_json(422, ['ok' => false, 'errors' => $errors]);
+    }
+
+    render_error_page(422, 'Bitte prüfen Sie diese Angaben:', $errors);
+}
+
+/** Sending failed. No details for the visitor: they can't fix it, and details only help attackers. */
+function respond_send_failed(): never
+{
+    $message = 'Ihre Anfrage konnte gerade nicht gesendet werden. '
+        . 'Bitte versuchen Sie es später noch einmal oder rufen Sie uns an.';
+
+    if (wants_json()) {
+        send_json(500, ['ok' => false, 'message' => $message]);
+    }
+
+    render_error_page(500, $message, []);
+}
+
+/** The HTML error page for visitors without JS. The template uses `$lead` and `$errors`. */
+function render_error_page(int $status, string $lead, array $errors): never
+{
+    http_response_code($status);
+    header('Content-Type: text/html; charset=UTF-8');
+    require __DIR__ . '/error-page.php';
+    exit;
+}
+
+/** Escapes text for HTML. Everything printed into the page goes through this (prevents XSS). */
+function e(string $text): string
+{
+    return htmlspecialchars($text, ENT_QUOTES, 'UTF-8');
+}
