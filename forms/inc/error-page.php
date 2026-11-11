@@ -102,17 +102,10 @@
     </header>
 
     <main id="inhalt">
-      <div class="section section--inverse">
-        <div class="container">
-          <hgroup class="section-heading">
-            <h1>Anfrage nicht gesendet</h1>
-            <p class="section-heading__lead"><?= e($lead) ?></p>
-          </hgroup>
-        </div>
-      </div>
-
       <div class="section">
         <div class="container stack">
+          <h1>Anfrage nicht gesendet</h1>
+          <p><?= e($lead) ?></p>
 <?php if ($errors !== []) : ?>
           <ul>
 <?php foreach ($errors as $message) : ?>
