@@ -32,7 +32,21 @@ function setTimestamp(form) {
   }
 }
 
+function preselectService(form) {
+  const slug = new URLSearchParams(location.search).get("leistung");
+  if (!slug) {
+    return;
+  }
+
+  for (const input of form.querySelectorAll('input[name="service[]"]')) {
+    if (input.value === slug) {
+      input.checked = true;
+    }
+  }
+}
+
 export function initForm(form) {
   setTimestamp(form);
   setDateRange(form);
+  preselectService(form);
 }
