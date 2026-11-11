@@ -47,7 +47,7 @@ function preselectService(form) {
 
 const SVG_NS = "http://www.w3.org/2000/svg";
 const FALLBACK_MESSAGE =
-  "Ihre Anfrage konnte gerade nicht gesendet werden. Bitte versuchen Sie es später noch einmal oder rufen Sie uns an.";
+  "Das Formular konnte gerade nicht gesendet werden. Bitte versuchen Sie es später noch einmal oder rufen Sie uns an.";
 
 function controlsFor(form, key) {
   const item =
@@ -185,7 +185,7 @@ function showErrors(form, errors) {
 }
 
 function showFailure(form, text) {
-  const summary = createSummary(form, "Anfrage nicht gesendet");
+  const summary = createSummary(form, "Nicht gesendet");
   const paragraph = document.createElement("p");
   paragraph.textContent = text;
   summary.append(paragraph);
