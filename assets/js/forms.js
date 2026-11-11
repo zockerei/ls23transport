@@ -119,8 +119,8 @@ function showFieldError(form, key, text) {
     fieldset.querySelector(".choices").before(message);
     addToken(fieldset, "aria-describedby", id);
   } else {
-    // Single field: between label/hint and the input.
-    first.before(message);
+    const row = first.closest(".form__row");
+    (row ?? first).before(message);
     addToken(first, "aria-describedby", id);
   }
 
