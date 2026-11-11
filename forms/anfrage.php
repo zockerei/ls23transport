@@ -29,9 +29,6 @@ const TIME_WINDOWS = [
     'flexibel' => 'Flexibel',
 ];
 
-/** How far ahead the dates may be. */
-const MAX_MONTHS = 12;
-
 require_post();
 
 // Spam gets the same answer as a real request, so bots can't tell the difference. Nothing is sent.

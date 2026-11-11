@@ -1,4 +1,4 @@
-// Same limit as the server (MAX_MONTHS in forms/anfrage.php).
+// Same limit as the server (MAX_MONTHS in forms/inc/validate.php).
 const MAX_MONTHS = 12;
 
 /** "YYYY-MM-DD" from the local date parts. toISOString() would give the UTC date (yesterday after midnight). */
