@@ -498,13 +498,19 @@
     font-weight: 600;
   }
 
-  .contact__needs {
+  .contact__needs,
+  .jobs__list {
     max-inline-size: 65ch;
     padding-inline-start: 1.25em;
   }
 
-  .contact__needs li + li {
+  .contact__needs li + li,
+  .jobs__list li + li {
     margin-block-start: var(--space-2xs);
+  }
+
+  .jobs__offer {
+    max-inline-size: 48rem;
   }
 
   .form {
