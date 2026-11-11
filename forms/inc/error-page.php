@@ -1,7 +1,7 @@
 <?php
 /*
  * Error page for visitors without JS: render_error_page() in response.php includes it,
- * with `$lead` (one sentence) and `$errors` (list of messages, may be empty).
+ * with `$title` ("Anfrage nicht gesendet"), `$lead` (one sentence) and `$errors` (list of messages, may be empty).
  * Head, header and footer are copies from the other pages (§6 of the plan): change them together.
  * The inline theme script must stay byte-identical, or its CSP hash no longer matches.
  */
@@ -21,7 +21,7 @@
         }
       } catch {}
     </script>
-    <title>Fehler: Anfrage nicht gesendet | LS23 Transport</title>
+    <title>Fehler: <?= e($title) ?> | LS23 Transport</title>
     <meta name="robots" content="noindex" />
     <link
       rel="preload"
@@ -104,7 +104,7 @@
     <main id="inhalt">
       <div class="section">
         <div class="container stack">
-          <h1>Anfrage nicht gesendet</h1>
+          <h1><?= e($title) ?></h1>
           <p><?= e($lead) ?></p>
 <?php if ($errors !== []) : ?>
           <ul>
