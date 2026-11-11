@@ -9,6 +9,9 @@ declare(strict_types=1);
 
 const FORM_TIMEZONE = 'Europe/Vienna';
 
+/** How far ahead a date field may be. One value for every form: forms.js sets it as `max` on every date field. */
+const MAX_MONTHS = 12;
+
 /** One text field, trimmed. Missing, or an array (`name[]=x`), gives ''. */
 function field(string $key): string
 {

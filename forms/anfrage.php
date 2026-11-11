@@ -10,6 +10,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/inc/validate.php';
 require_once __DIR__ . '/inc/spam.php';
 require_once __DIR__ . '/inc/mail.php';
+require_once __DIR__ . '/inc/format.php';
 require_once __DIR__ . '/inc/response.php';
 
 const SERVICES = [
@@ -28,14 +29,7 @@ const TIME_WINDOWS = [
     'flexibel' => 'Flexibel',
 ];
 
-/** How far ahead the dates may be. */
-const MAX_MONTHS = 12;
-
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    header('Allow: POST');
-    exit;
-}
+require_post();
 
 // Spam gets the same answer as a real request, so bots can't tell the difference. Nothing is sent.
 if (is_spam()) {
@@ -126,19 +120,10 @@ if ($message === '') {
 }
 
 if ($errors !== []) {
-    respond_invalid($errors);
+    respond_invalid('Anfrage', $errors);
 }
 
 // Everything is valid from here on.
-
-/** "Fr, 20.11.2026". The date is already validated. */
-function format_date(string $value): string
-{
-    $weekdays = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
-    $date = parse_date($value);
-
-    return $weekdays[(int) $date->format('N') - 1] . ', ' . $date->format('d.m.Y');
-}
 
 $serviceLabels = implode(', ', array_map(fn(string $slug) => SERVICES[$slug], $services));
 
@@ -154,22 +139,19 @@ $details = [
     'Alternativtermin' => $dateAlt === '' ? '' : format_date($dateAlt),
 ];
 
-$body = "Neue Anfrage über das Formular auf ls23transport.at.\n"
-    . "Mit „Antworten“ schreiben Sie direkt an die Person, die angefragt hat.\n\n";
-foreach ($details as $label => $value) {
-    // Empty optional fields are left out.
-    if ($value !== '') {
-        $body .= str_pad("{$label}:", 18) . $value . "\n";
-    }
-}
-$body .= "\nBeschreibung:\n{$message}\n";
+$body = mail_body(
+    "Neue Anfrage über das Formular auf ls23transport.at.\n"
+        . 'Mit „Antworten“ schreiben Sie direkt an die Person, die angefragt hat.',
+    $details,
+    ['Beschreibung' => $message],
+);
 
 $subject = "Anfrage: {$serviceLabels} – {$name}";
 
 if (!send_mail($subject, $body, $email)) {
     // Goes to the server's error log. No personal data in it.
     error_log('anfrage.php: sending failed');
-    respond_send_failed();
+    respond_send_failed('Anfrage');
 }
 
 respond_success();

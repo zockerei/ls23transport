@@ -8,6 +8,16 @@ declare(strict_types=1);
  * - No JS: a normal form POST gets a redirect (success) or the error page.
  */
 
+/** Handlers only accept POST. Anything else (a visitor opening the URL) gets 405. */
+function require_post(): void
+{
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        http_response_code(405);
+        header('Allow: POST');
+        exit;
+    }
+}
+
 /** True for fetch() from JS, which asks for JSON. */
 function wants_json(): bool
 {
@@ -35,31 +45,36 @@ function respond_success(string $redirect = '/danke/'): never
     exit;
 }
 
+/*
+ * `$noun` names what was sent, in the texts the visitor sees: "Anfrage", "Bewerbung".
+ * Both are feminine, so "Ihre …" fits both.
+ */
+
 /** Validation failed. `$errors` = field name → German message, in form order. */
-function respond_invalid(array $errors): never
+function respond_invalid(string $noun, array $errors): never
 {
     if (wants_json()) {
         send_json(422, ['ok' => false, 'errors' => $errors]);
     }
 
-    render_error_page(422, 'Bitte prüfen Sie diese Angaben:', $errors);
+    render_error_page(422, "{$noun} nicht gesendet", 'Bitte prüfen Sie diese Angaben:', $errors);
 }
 
 /** Sending failed. No details for the visitor: they can't fix it, and details only help attackers. */
-function respond_send_failed(): never
+function respond_send_failed(string $noun): never
 {
-    $message = 'Ihre Anfrage konnte gerade nicht gesendet werden. '
+    $message = "Ihre {$noun} konnte gerade nicht gesendet werden. "
         . 'Bitte versuchen Sie es später noch einmal oder rufen Sie uns an.';
 
     if (wants_json()) {
         send_json(500, ['ok' => false, 'message' => $message]);
     }
 
-    render_error_page(500, $message, []);
+    render_error_page(500, "{$noun} nicht gesendet", $message, []);
 }
 
-/** The HTML error page for visitors without JS. The template uses `$lead` and `$errors`. */
-function render_error_page(int $status, string $lead, array $errors): never
+/** The HTML error page for visitors without JS. The template uses `$title`, `$lead` and `$errors`. */
+function render_error_page(int $status, string $title, string $lead, array $errors): never
 {
     http_response_code($status);
     header('Content-Type: text/html; charset=UTF-8');

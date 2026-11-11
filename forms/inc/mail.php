@@ -46,8 +46,9 @@ function smtp_config(): ?array
  * Sends a plain-text mail to the business inbox.
  * `$replyTo` is the visitor's address: "Antworten" goes to them. It never goes in `From`:
  * only mailbox.org may send for our domain, not for theirs (SPF), so the mail would land in spam.
+ * `$attachments`: [['path' => temp file, 'name' => file name in the mail], …], already checked by the handler.
  */
-function send_mail(string $subject, string $body, string $replyTo = ''): bool
+function send_mail(string $subject, string $body, string $replyTo = '', array $attachments = []): bool
 {
     $subject = header_safe($subject);
     $replyTo = header_safe($replyTo);
@@ -57,7 +58,7 @@ function send_mail(string $subject, string $body, string $replyTo = ''): bool
     // `php -S` (local development): write to mail.log in the repo root instead of sending.
     // `FORM_SMTP=1 php -S …` sends for real (needs the local form-config.php, see smtp_config()).
     if (PHP_SAPI === 'cli-server' && getenv('FORM_SMTP') !== '1') {
-        return log_mail($subject, $body, $replyTo);
+        return log_mail($subject, $body, $replyTo, $attachments);
     }
 
     $config = smtp_config();
@@ -92,6 +93,10 @@ function send_mail(string $subject, string $body, string $replyTo = ''): bool
         }
         $mail->Subject = $subject;
         $mail->Body = $body;
+        foreach ($attachments as $attachment) {
+            // PHPMailer picks the MIME type from the extension of our own name and encodes the file as base64.
+            $mail->addAttachment($attachment['path'], $attachment['name']);
+        }
 
         $mail->send();
 
@@ -104,8 +109,8 @@ function send_mail(string $subject, string $body, string $replyTo = ''): bool
     }
 }
 
-/** Readable copy of the mail for local testing. */
-function log_mail(string $subject, string $body, string $replyTo): bool
+/** Readable copy of the mail for local testing. Attachments only by name and size. */
+function log_mail(string $subject, string $body, string $replyTo, array $attachments = []): bool
 {
     $now = new DateTimeImmutable('now', new DateTimeZone('Europe/Vienna')); // PHP's default is UTC
     $entry = '=== ' . $now->format('Y-m-d H:i:s') . " ===\n";
@@ -115,6 +120,9 @@ function log_mail(string $subject, string $body, string $replyTo): bool
         $entry .= "Reply-To: {$replyTo}\n";
     }
     $entry .= "Subject: {$subject}\n";
+    foreach ($attachments as $attachment) {
+        $entry .= "Attachment: {$attachment['name']} (" . filesize($attachment['path']) . " bytes)\n";
+    }
     $entry .= "\n{$body}\n\n";
 
     return file_put_contents(dirname(__DIR__, 2) . '/mail.log', $entry, FILE_APPEND | LOCK_EX) !== false;

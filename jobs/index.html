@@ -103,7 +103,7 @@
             <h1>Jobs</h1>
             <p class="section-heading__lead">
               Wir suchen Verstärkung für Transporte und Umzüge in Linz und
-              Oberösterreich: in Vollzeit oder Teilzeit, ab 2027.
+              Oberösterreich: Vollzeit oder Teilzeit, ab 2027.
             </p>
           </hgroup>
         </div>
@@ -164,6 +164,207 @@
             <li>Führerschein B</li>
             <li>Deutsch mindestens auf Niveau B1, auch schriftlich</li>
           </ul>
+        </div>
+      </section>
+
+      <section class="section section--surface" id="bewerbung">
+        <div class="container stack">
+          <h2 id="bewerbung-titel">Jetzt bewerben</h2>
+          <p>
+            Wir melden uns an Werktagen innerhalb von 24&nbsp;Stunden. Lieber
+            persönlich? Rufen Sie an:
+            <a href="tel:+436701969214">+43 670 1969 214</a>
+          </p>
+          <form
+            class="form"
+            action="/forms/bewerbung.php"
+            method="post"
+            enctype="multipart/form-data"
+            aria-labelledby="bewerbung-titel"
+          >
+            <p class="form__intro">
+              Alle Felder sind Pflichtfelder, außer sie sind als optional
+              markiert.
+            </p>
+
+            <fieldset class="form__group">
+              <legend class="form__legend">Kontaktdaten</legend>
+              <div class="field">
+                <label class="field__label" for="bewerbung-name">Name</label>
+                <input
+                  class="field__input"
+                  type="text"
+                  id="bewerbung-name"
+                  name="name"
+                  autocomplete="name"
+                  required
+                  minlength="2"
+                  maxlength="100"
+                />
+              </div>
+              <div class="field">
+                <label class="field__label" for="bewerbung-phone"
+                  >Telefon</label
+                >
+                <input
+                  class="field__input"
+                  type="tel"
+                  id="bewerbung-phone"
+                  name="phone"
+                  autocomplete="tel"
+                  required
+                  pattern="[+0-9 \(\)\/\-]{6,25}"
+                />
+              </div>
+              <div class="field">
+                <label class="field__label" for="bewerbung-email"
+                  >E-Mail <span class="form__optional">(optional)</span></label
+                >
+                <input
+                  class="field__input"
+                  type="email"
+                  id="bewerbung-email"
+                  name="email"
+                  autocomplete="email"
+                  maxlength="254"
+                />
+              </div>
+              <div class="field">
+                <label class="field__label" for="bewerbung-city">Wohnort</label>
+                <input
+                  class="field__input"
+                  type="text"
+                  id="bewerbung-city"
+                  name="city"
+                  autocomplete="address-level2"
+                  required
+                  maxlength="100"
+                />
+              </div>
+            </fieldset>
+
+            <fieldset class="form__group">
+              <legend class="form__legend">Verfügbarkeit</legend>
+              <fieldset class="form__subgroup">
+                <legend class="field__label">Beschäftigungsausmaß</legend>
+                <div class="choices">
+                  <div class="choice">
+                    <input
+                      class="choice__input"
+                      type="radio"
+                      id="bewerbung-scope-vollzeit"
+                      name="scope"
+                      value="vollzeit"
+                      required
+                    />
+                    <label class="choice__label" for="bewerbung-scope-vollzeit"
+                      >Vollzeit</label
+                    >
+                  </div>
+                  <div class="choice">
+                    <input
+                      class="choice__input"
+                      type="radio"
+                      id="bewerbung-scope-teilzeit"
+                      name="scope"
+                      value="teilzeit"
+                      required
+                    />
+                    <label class="choice__label" for="bewerbung-scope-teilzeit"
+                      >Teilzeit</label
+                    >
+                  </div>
+                </div>
+              </fieldset>
+              <div class="field">
+                <label class="field__label" for="bewerbung-start"
+                  >Verfügbar ab
+                  <span class="form__optional">(optional)</span></label
+                >
+                <input
+                  class="field__input"
+                  type="date"
+                  id="bewerbung-start"
+                  name="start"
+                />
+              </div>
+              <div class="field">
+                <label class="field__label" for="bewerbung-days"
+                  >Verfügbare Tage und Zeiten
+                  <span class="form__optional">(optional)</span></label
+                >
+                <p class="field__hint" id="bewerbung-days-hint">
+                  Zum Beispiel: Mo bis Mi ganztags, Sa vormittags
+                </p>
+                <input
+                  class="field__input"
+                  type="text"
+                  id="bewerbung-days"
+                  name="days"
+                  maxlength="300"
+                  aria-describedby="bewerbung-days-hint"
+                />
+              </div>
+            </fieldset>
+
+            <div class="field">
+              <label class="field__label" for="bewerbung-message"
+                >Nachricht <span class="form__optional">(optional)</span></label
+              >
+              <p class="field__hint" id="bewerbung-message-hint">
+                Zum Beispiel Ihre Erfahrung mit Transporten oder Umzügen.
+              </p>
+              <textarea
+                class="field__input"
+                id="bewerbung-message"
+                name="message"
+                rows="6"
+                maxlength="3000"
+                aria-describedby="bewerbung-message-hint"
+              ></textarea>
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="bewerbung-files"
+                >Anhänge <span class="form__optional">(optional)</span></label
+              >
+              <p class="field__hint" id="bewerbung-files-hint">
+                Zum Beispiel Lebenslauf oder Zeugnisse. Bis zu 3 Dateien als
+                PDF, JPG oder PNG, je höchstens 5&nbsp;MB, zusammen höchstens
+                10&nbsp;MB. Foto und Geburtsdatum sind nicht nötig.
+              </p>
+              <input
+                class="field__input"
+                type="file"
+                id="bewerbung-files"
+                name="files[]"
+                multiple
+                accept="application/pdf,image/jpeg,image/png"
+                aria-describedby="bewerbung-files-hint"
+              />
+            </div>
+
+            <div class="form__trap" aria-hidden="true">
+              <label for="bewerbung-website">Bitte leer lassen</label>
+              <input
+                type="text"
+                id="bewerbung-website"
+                name="website"
+                tabindex="-1"
+                autocomplete="off"
+              />
+            </div>
+            <input type="hidden" name="ts" />
+
+            <div class="form__actions">
+              <button class="button" type="submit">Bewerbung senden</button>
+              <p class="form__note">
+                Wir verwenden Ihre Angaben nur für Ihre Bewerbung. Mehr dazu in
+                der
+                <a href="/datenschutz/#bewerbungen">Datenschutzerklärung</a>.
+              </p>
+            </div>
+          </form>
         </div>
       </section>
     </main>
