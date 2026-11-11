@@ -556,6 +556,15 @@
     font-size: var(--step--1);
   }
 
+  /* Honeypot: off-screen for everyone. aria-hidden and tabindex="-1" in the markup
+     keep it away from screen readers and the keyboard. Bots fill it, people don't. */
+  .form__trap {
+    position: absolute;
+    inset-inline-start: -100vw;
+    inline-size: 1px;
+    overflow: hidden;
+  }
+
   .field {
     display: grid;
     align-content: start;
