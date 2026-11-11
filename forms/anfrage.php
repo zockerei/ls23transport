@@ -168,7 +168,7 @@ $subject = "Anfrage: {$serviceLabels} – {$name}";
 
 if (!send_mail($subject, $body, $email)) {
     // Goes to the server's error log. No personal data in it.
-    error_log('anfrage.php: mail() failed');
+    error_log('anfrage.php: sending failed');
     respond_send_failed();
 }
 
