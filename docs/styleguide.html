@@ -1900,10 +1900,12 @@
           copy uses the real <code>id</code>s; the dark copy adds
           <code>-dark</code> to every <code>id</code>, because ids must be
           unique on a page. A valid submit posts to
-          <code>/forms/anfrage.php</code>, which doesn't exist before 3.4.
-          Leistung has no native <code>required</code>: on a checkbox it means
-          "this box must be checked", and HTML can't require one of several. The
-          server (3.4) and JS (3.5) check it.
+          <code>/forms/anfrage.php</code> (needs <code>php -S</code>; the
+          Cloudflare preview doesn't run PHP). The honeypot and
+          <code>ts</code> fields are only on <code>/kontakt/</code>. Leistung
+          has no native <code>required</code>: on a checkbox it means "this box
+          must be checked", and HTML can't require one of several. The server
+          (3.4) and JS (3.5) check it.
         </p>
         <div class="demos demos--full" lang="de-AT">
           <div class="demo theme-light">
@@ -2267,7 +2269,9 @@
                     <p class="form__note">
                       Wir verwenden Ihre Angaben nur, um Ihre Anfrage zu
                       bearbeiten. Mehr dazu in der
-                      <a href="/datenschutz/">Datenschutzerklärung</a>.
+                      <a href="/datenschutz/#anfrageformular"
+                        >Datenschutzerklärung</a
+                      >.
                     </p>
                   </div>
                 </form>
@@ -2637,7 +2641,9 @@
                     <p class="form__note">
                       Wir verwenden Ihre Angaben nur, um Ihre Anfrage zu
                       bearbeiten. Mehr dazu in der
-                      <a href="/datenschutz/">Datenschutzerklärung</a>.
+                      <a href="/datenschutz/#anfrageformular"
+                        >Datenschutzerklärung</a
+                      >.
                     </p>
                   </div>
                 </form>

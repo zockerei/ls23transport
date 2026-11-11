@@ -118,6 +118,10 @@
     hyphens: none;
   }
 
+  a[href^="tel:"] {
+    white-space: nowrap;
+  }
+
   :focus-visible {
     outline: 3px solid var(--color-focus);
     outline-offset: 2px;
@@ -554,6 +558,13 @@
 
   .form__note {
     font-size: var(--step--1);
+  }
+
+  .form__trap {
+    position: absolute;
+    inset-inline-start: -100vw;
+    inline-size: 1px;
+    overflow: hidden;
   }
 
   .field {
