@@ -584,6 +584,12 @@
           </li>
           <li class="icons__item">
             <svg class="icon" aria-hidden="true" width="24" height="24">
+              <use href="/assets/icons/sprite.svg#circle-alert"></use>
+            </svg>
+            <code>circle-alert</code>
+          </li>
+          <li class="icons__item">
+            <svg class="icon" aria-hidden="true" width="24" height="24">
               <use href="/assets/icons/sprite.svg#clock"></use>
             </svg>
             <code>clock</code>
@@ -1893,20 +1899,6 @@
 
       <section aria-labelledby="form">
         <h2 id="form">Form</h2>
-        <p class="sg__intro">
-          The request form (§4) as it goes on <code>/kontakt/</code> in 3.4.
-          Native validation only: no JS, no <code>novalidate</code>. Submit an
-          empty form, then letters in Telefon and three digits in PLZ. The light
-          copy uses the real <code>id</code>s; the dark copy adds
-          <code>-dark</code> to every <code>id</code>, because ids must be
-          unique on a page. A valid submit posts to
-          <code>/forms/anfrage.php</code> (needs <code>php -S</code>; the
-          Cloudflare preview doesn't run PHP). The honeypot and
-          <code>ts</code> fields are only on <code>/kontakt/</code>. Leistung
-          has no native <code>required</code>: on a checkbox it means "this box
-          must be checked", and HTML can't require one of several. The server
-          (3.4) and JS (3.5) check it.
-        </p>
         <div class="demos demos--full" lang="de-AT">
           <div class="demo theme-light">
             <section class="section">
@@ -2645,6 +2637,310 @@
                         >Datenschutzerklärung</a
                       >.
                     </p>
+                  </div>
+                </form>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="form-errors">
+        <h2 id="form-errors">Form errors</h2>
+        <div class="demos demos--full" lang="de-AT">
+          <div class="demo theme-light">
+            <section class="section">
+              <div class="container stack">
+                <div
+                  class="error-summary"
+                  role="alert"
+                  tabindex="-1"
+                  aria-labelledby="errors-summary-title"
+                >
+                  <h3 class="error-summary__title" id="errors-summary-title">
+                    Bitte prüfen Sie Ihre Angaben
+                  </h3>
+                  <ul class="error-summary__list">
+                    <li>
+                      <a href="#errors-service-umzug"
+                        >Bitte wählen Sie mindestens eine Leistung aus.</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#errors-phone"
+                        >Bitte geben Sie eine gültige Telefonnummer an, z. B.
+                        0664 1234567.</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+
+                <div
+                  class="error-summary"
+                  role="alert"
+                  tabindex="-1"
+                  aria-labelledby="errors-failed-title"
+                >
+                  <h3 class="error-summary__title" id="errors-failed-title">
+                    Anfrage nicht gesendet
+                  </h3>
+                  <p>
+                    Ihre Anfrage konnte gerade nicht gesendet werden. Bitte
+                    versuchen Sie es später noch einmal oder rufen Sie uns an.
+                  </p>
+                  <p><a href="tel:+436701969214">+43 670 1969 214</a></p>
+                </div>
+
+                <form class="form" novalidate aria-label="Fehlerzustand">
+                  <fieldset
+                    class="form__group"
+                    aria-describedby="errors-service-hint errors-service-error"
+                  >
+                    <legend class="form__legend">Leistung</legend>
+                    <p class="field__hint" id="errors-service-hint">
+                      Eine oder mehrere auswählen.
+                    </p>
+                    <p class="field__error" id="errors-service-error">
+                      <svg
+                        class="icon"
+                        aria-hidden="true"
+                        width="24"
+                        height="24"
+                      >
+                        <use href="/assets/icons/sprite.svg#circle-alert"></use>
+                      </svg>
+                      <span
+                        ><span class="visually-hidden">Fehler: </span>Bitte
+                        wählen Sie mindestens eine Leistung aus.</span
+                      >
+                    </p>
+                    <div class="choices">
+                      <div class="choice">
+                        <input
+                          class="choice__input"
+                          type="checkbox"
+                          id="errors-service-umzug"
+                          name="service[]"
+                          value="umzug"
+                          aria-invalid="true"
+                        />
+                        <label class="choice__label" for="errors-service-umzug"
+                          >Umzug &amp; Büroumzug</label
+                        >
+                      </div>
+                      <div class="choice">
+                        <input
+                          class="choice__input"
+                          type="checkbox"
+                          id="errors-service-moebelmontage"
+                          name="service[]"
+                          value="moebelmontage"
+                          aria-invalid="true"
+                        />
+                        <label
+                          class="choice__label"
+                          for="errors-service-moebelmontage"
+                          >Möbelmontage</label
+                        >
+                      </div>
+                    </div>
+                  </fieldset>
+
+                  <div class="field">
+                    <label class="field__label" for="errors-phone"
+                      >Telefon</label
+                    >
+                    <p class="field__error" id="errors-phone-error">
+                      <svg
+                        class="icon"
+                        aria-hidden="true"
+                        width="24"
+                        height="24"
+                      >
+                        <use href="/assets/icons/sprite.svg#circle-alert"></use>
+                      </svg>
+                      <span
+                        ><span class="visually-hidden">Fehler: </span>Bitte
+                        geben Sie eine gültige Telefonnummer an, z. B. 0664
+                        1234567.</span
+                      >
+                    </p>
+                    <input
+                      class="field__input"
+                      type="tel"
+                      id="errors-phone"
+                      name="phone"
+                      value="0664 abc"
+                      aria-invalid="true"
+                      aria-describedby="errors-phone-error"
+                    />
+                  </div>
+
+                  <div class="field">
+                    <label class="field__label" for="errors-zip">PLZ</label>
+                    <input
+                      class="field__input"
+                      type="text"
+                      id="errors-zip"
+                      name="zip"
+                      inputmode="numeric"
+                      pattern="[0-9]{4}"
+                      value="402"
+                    />
+                  </div>
+                </form>
+              </div>
+            </section>
+          </div>
+          <div class="demo theme-dark">
+            <section class="section">
+              <div class="container stack">
+                <div
+                  class="error-summary"
+                  role="alert"
+                  tabindex="-1"
+                  aria-labelledby="errors-summary-title-dark"
+                >
+                  <h3
+                    class="error-summary__title"
+                    id="errors-summary-title-dark"
+                  >
+                    Bitte prüfen Sie Ihre Angaben
+                  </h3>
+                  <ul class="error-summary__list">
+                    <li>
+                      <a href="#errors-service-umzug-dark"
+                        >Bitte wählen Sie mindestens eine Leistung aus.</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#errors-phone-dark"
+                        >Bitte geben Sie eine gültige Telefonnummer an, z. B.
+                        0664 1234567.</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+
+                <div
+                  class="error-summary"
+                  role="alert"
+                  tabindex="-1"
+                  aria-labelledby="errors-failed-title-dark"
+                >
+                  <h3
+                    class="error-summary__title"
+                    id="errors-failed-title-dark"
+                  >
+                    Anfrage nicht gesendet
+                  </h3>
+                  <p>
+                    Ihre Anfrage konnte gerade nicht gesendet werden. Bitte
+                    versuchen Sie es später noch einmal oder rufen Sie uns an.
+                  </p>
+                  <p><a href="tel:+436701969214">+43 670 1969 214</a></p>
+                </div>
+
+                <form class="form" novalidate aria-label="Fehlerzustand">
+                  <fieldset
+                    class="form__group"
+                    aria-describedby="errors-service-hint-dark errors-service-error-dark"
+                  >
+                    <legend class="form__legend">Leistung</legend>
+                    <p class="field__hint" id="errors-service-hint-dark">
+                      Eine oder mehrere auswählen.
+                    </p>
+                    <p class="field__error" id="errors-service-error-dark">
+                      <svg
+                        class="icon"
+                        aria-hidden="true"
+                        width="24"
+                        height="24"
+                      >
+                        <use href="/assets/icons/sprite.svg#circle-alert"></use>
+                      </svg>
+                      <span
+                        ><span class="visually-hidden">Fehler: </span>Bitte
+                        wählen Sie mindestens eine Leistung aus.</span
+                      >
+                    </p>
+                    <div class="choices">
+                      <div class="choice">
+                        <input
+                          class="choice__input"
+                          type="checkbox"
+                          id="errors-service-umzug-dark"
+                          name="service[]"
+                          value="umzug"
+                          aria-invalid="true"
+                        />
+                        <label
+                          class="choice__label"
+                          for="errors-service-umzug-dark"
+                          >Umzug &amp; Büroumzug</label
+                        >
+                      </div>
+                      <div class="choice">
+                        <input
+                          class="choice__input"
+                          type="checkbox"
+                          id="errors-service-moebelmontage-dark"
+                          name="service[]"
+                          value="moebelmontage"
+                          aria-invalid="true"
+                        />
+                        <label
+                          class="choice__label"
+                          for="errors-service-moebelmontage-dark"
+                          >Möbelmontage</label
+                        >
+                      </div>
+                    </div>
+                  </fieldset>
+
+                  <div class="field">
+                    <label class="field__label" for="errors-phone-dark"
+                      >Telefon</label
+                    >
+                    <p class="field__error" id="errors-phone-error-dark">
+                      <svg
+                        class="icon"
+                        aria-hidden="true"
+                        width="24"
+                        height="24"
+                      >
+                        <use href="/assets/icons/sprite.svg#circle-alert"></use>
+                      </svg>
+                      <span
+                        ><span class="visually-hidden">Fehler: </span>Bitte
+                        geben Sie eine gültige Telefonnummer an, z. B. 0664
+                        1234567.</span
+                      >
+                    </p>
+                    <input
+                      class="field__input"
+                      type="tel"
+                      id="errors-phone-dark"
+                      name="phone"
+                      value="0664 abc"
+                      aria-invalid="true"
+                      aria-describedby="errors-phone-error-dark"
+                    />
+                  </div>
+
+                  <div class="field">
+                    <label class="field__label" for="errors-zip-dark"
+                      >PLZ</label
+                    >
+                    <input
+                      class="field__input"
+                      type="text"
+                      id="errors-zip-dark"
+                      name="zip"
+                      inputmode="numeric"
+                      pattern="[0-9]{4}"
+                      value="402"
+                    />
                   </div>
                 </form>
               </div>

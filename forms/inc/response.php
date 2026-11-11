@@ -23,14 +23,15 @@ function send_json(int $status, array $data): never
 }
 
 /** Success. Also the fake success for spam. */
-function respond_success(): never
+function respond_success(string $redirect = '/danke/'): never
 {
     if (wants_json()) {
-        send_json(200, ['ok' => true]);
+        // JS goes to the same page itself, so the target is defined only here.
+        send_json(200, ['ok' => true, 'redirect' => $redirect]);
     }
 
     // 303 See Other: the browser follows with a GET, so a reload on /danke/ doesn't send the form again.
-    header('Location: /danke/', true, 303);
+    header("Location: {$redirect}", true, 303);
     exit;
 }
 
