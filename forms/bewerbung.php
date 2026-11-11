@@ -64,8 +64,10 @@ if ($phone === '') {
     $errors['phone'] = 'Bitte geben Sie eine gültige Telefonnummer an, z. B. 0664 1234567.';
 }
 
-// Optional here, unlike in the request form: he calls applicants back.
-if ($email !== '' && !is_email($email)) {
+// Required, like in the request form: without it, "Antworten" would go to our own address (From).
+if ($email === '') {
+    $errors['email'] = 'Bitte geben Sie Ihre E-Mail-Adresse an.';
+} elseif (!is_email($email)) {
     $errors['email'] = 'Bitte geben Sie eine gültige E-Mail-Adresse an, z. B. name@beispiel.at.';
 }
 
@@ -120,9 +122,7 @@ foreach ($files as $i => $file) {
 }
 
 $intro = "Neue Bewerbung über das Formular auf ls23transport.at.\n"
-    . ($email !== ''
-        ? 'Mit „Antworten“ schreiben Sie direkt an die Person, die sich beworben hat.'
-        : 'Keine E-Mail-Adresse angegeben: bitte telefonisch melden.');
+    . 'Mit „Antworten“ schreiben Sie direkt an die Person, die sich beworben hat.';
 
 $body = mail_body(
     $intro,
