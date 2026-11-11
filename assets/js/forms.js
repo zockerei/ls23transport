@@ -1,3 +1,5 @@
+import { initFileList } from "./files.js";
+
 // Same limit as the server (MAX_MONTHS in forms/inc/validate.php).
 const MAX_MONTHS = 12;
 
@@ -282,5 +284,8 @@ export function initForm(form) {
   setTimestamp(form);
   setDateRange(form);
   preselectService(form);
+  for (const input of form.querySelectorAll('input[type="file"][multiple]')) {
+    initFileList(input);
+  }
   initSubmit(form);
 }

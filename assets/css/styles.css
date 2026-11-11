@@ -606,6 +606,54 @@
     border-color: var(--color-text);
   }
 
+  .field__input::file-selector-button {
+    min-block-size: 2.25rem;
+    margin-inline-end: var(--space-xs);
+    padding: var(--space-3xs) var(--space-s);
+    border: 2px solid var(--color-border-strong);
+    border-radius: var(--radius-m);
+    background-color: transparent;
+    color: var(--color-text);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .field__input::file-selector-button:hover {
+    border-color: var(--color-text);
+  }
+
+  .file-list {
+    display: grid;
+    gap: var(--space-3xs);
+    padding: 0;
+    list-style: none;
+  }
+
+  .file-list__item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 var(--space-s);
+    padding: var(--space-3xs) var(--space-xs);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-m);
+    background-color: var(--color-bg);
+  }
+
+  .file-list__name {
+    overflow-wrap: anywhere;
+  }
+
+  .file-list__size {
+    color: var(--color-text-muted);
+    font-size: var(--step--1);
+  }
+
+  .file-list__remove {
+    margin-inline-start: auto;
+  }
+
   .field__input::-webkit-date-and-time-value {
     text-align: start;
   }
