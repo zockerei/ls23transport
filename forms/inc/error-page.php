@@ -116,6 +116,10 @@
             Gehen Sie mit der Zurück-Taste Ihres Browsers zum Formular zurück.
             Ihre Eingaben sind dort noch ausgefüllt.
           </p>
+<?php // Browsers restore text after "back", but never a chosen file. $_FILES is only set by forms with a file input. ?>
+<?php if ($_FILES !== [] || isset($errors['files'])) : ?>
+          <p>Ausgewählte Dateien müssen Sie dort neu auswählen.</p>
+<?php endif; ?>
 <?php endif; ?>
           <p>
             Lieber persönlich? Rufen Sie uns an:

@@ -179,6 +179,7 @@
             class="form"
             action="/forms/bewerbung.php"
             method="post"
+            enctype="multipart/form-data"
             aria-labelledby="bewerbung-titel"
           >
             <p class="form__intro">
@@ -321,6 +322,26 @@
                 maxlength="3000"
                 aria-describedby="bewerbung-message-hint"
               ></textarea>
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="bewerbung-files"
+                >Anhänge <span class="form__optional">(optional)</span></label
+              >
+              <p class="field__hint" id="bewerbung-files-hint">
+                Zum Beispiel Lebenslauf oder Zeugnisse. Bis zu 3 Dateien als
+                PDF, JPG oder PNG, je höchstens 5&nbsp;MB, zusammen höchstens
+                10&nbsp;MB. Foto und Geburtsdatum sind nicht nötig.
+              </p>
+              <input
+                class="field__input"
+                type="file"
+                id="bewerbung-files"
+                name="files[]"
+                multiple
+                accept="application/pdf,image/jpeg,image/png"
+                aria-describedby="bewerbung-files-hint"
+              />
             </div>
 
             <div class="form__trap" aria-hidden="true">
